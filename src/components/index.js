@@ -18,7 +18,7 @@ const Index=()=>{
     </div>
   </li>
 </ul>
-<img className='indexpix' src="2.png"></img>
+<img className='indexpic' src="2.png"></img>
         
         </>
 

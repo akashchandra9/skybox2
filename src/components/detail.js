@@ -12,6 +12,7 @@ const navigate = useNavigate();
 const location = useLocation();
   const {username}  = location.state;  
   const[backenddata,setbackenddata]=useState([])
+  const [uploadProgress, setUploadProgress] = useState(0);
 var name;
 var user = {
   username:username
@@ -36,10 +37,15 @@ axios.post('/api/site',user)
           headers: {
             'Content-Type': 'multipart/form-data',
           },
+          onUploadProgress: (progressEvent) => {
+            const progress = Math.round((progressEvent.loaded / progressEvent.total) * 100);
+            setUploadProgress(progress);
+          },
         })
         .then(res => {
           
           toast.success(res.data);
+          setUploadProgress(0);
         })
         .catch((error) => {
           console.error(error);
@@ -61,6 +67,18 @@ axios.post('/api/site',user)
 
 return (
 	<>
+    <ul>
+  <li><a href="/">Home</a></li>
+  <li><a href="#news">Plans</a></li>
+  <li className="dropdown">
+    <a href="javascript:void(0)" class="dropbtn">Hello {backenddata}</a>
+    <div className="dropdown-content">
+      <a href="/login">Login</a>
+      <a href="/register">Register</a>
+      <a href="/forget">Forgot Password</a>
+    </div>
+  </li>
+</ul>
 		
     <div className='dropzone'>
       <Dropzone onDrop={(acceptedFiles) => setSelectedFile(acceptedFiles)}>
@@ -73,13 +91,16 @@ return (
         )}
       </Dropzone>
       <button onClick={handleFileUpload}>Upload File</button>
+      {uploadProgress > 0 && (
+          <div className='progress-bar' style={{ width: `${uploadProgress}%` }}>
+            {uploadProgress}%
+          </div>
+        )}
      
     </div>
     {filePreviews}
 
-  <h1>Hello {backenddata}</h1><br>
-  </br>
-  <h1>How can I help u???</h1>
+  
 <ToastContainer/>
 	</>
 )

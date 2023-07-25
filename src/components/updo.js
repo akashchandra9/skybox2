@@ -28,7 +28,7 @@ axios.post('/api/site',user)
         navigate('/detail',{ state: { username: username } })
     }
     function download(){
-        navigate('/down',{ state: { username: username } })
+        navigate('/down',{ state: { username2: username } })
     }
 
 return (
@@ -37,7 +37,7 @@ return (
   <li><a href="/">Home</a></li>
   <li><a href="#news">Plans</a></li>
   <li className="dropdown">
-    <a href="javascript:void(0)" class="dropbtn">Account</a>
+    <a href="javascript:void(0)" class="dropbtn">Hello {backenddata}</a>
     <div className="dropdown-content">
       <a href="/login">Login</a>
       <a href="/register">Register</a>
@@ -46,13 +46,12 @@ return (
   </li>
 </ul>
 
-  <h1>Hello {backenddata}</h1><br>
-  </br>
-  <h1>How can I help u???</h1>
+  {/* <p>Hello {backenddata}</p> */}
+ 
 
-  <button onClick={upload}> Upload</button>
-  
-  <button onClick={download}>Download</button>
+  <button className='upbutton' onClick={upload}><b>Upload</b></button>
+  <br></br><br></br>
+  <button className='downbutton' onClick={download}><b>Download</b></button>
 
 	</>
 )
