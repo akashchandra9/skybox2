@@ -122,7 +122,7 @@ const location = useLocation();
         <h1>Files Available:</h1>
         {/* <ol> */}
           {files.map((file, index) => (
-            <h6 key={index}>{file}<button onClick={()=>dow(file)}>download</button></h6>
+            <h5 key={index}>{file}<button onClick={()=>dow(file)}>download</button></h5>
           ))}
         {/* </ol> */}
       </div>
